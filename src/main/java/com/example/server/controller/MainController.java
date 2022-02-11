@@ -32,7 +32,7 @@ public class MainController {
     @GetMapping("/test/variant/{id}")
     private List<TestDto> getTests(@PathVariable Integer id) {
         Optional<Variant> optionalVariant = variantRepository.findById(id);
-        if (optionalVariant.isEmpty())
+        if (!optionalVariant.isPresent())
             return null;
 
         List<Test> tests = testRepository.findAllByVariantIdOrderByTestNumber(id);
@@ -48,7 +48,7 @@ public class MainController {
     @GetMapping("/test/{id}")
     private Test getTest(@PathVariable Integer id) {
         Optional<Test> optionalTest = testRepository.findById(id);
-        if (optionalTest.isEmpty())
+        if (!optionalTest.isPresent())
             return null;
         return optionalTest.get();
     }
@@ -56,7 +56,7 @@ public class MainController {
     @PostMapping("/test/update")
     private Test updateTest(@RequestBody UpdateTestDto dto) {
         Optional<Test> optionalTest = testRepository.findById(dto.getId());
-        if (optionalTest.isEmpty())
+        if (!optionalTest.isPresent())
             return null;
         Test test = optionalTest.get();
         test.setText(dto.getText());
