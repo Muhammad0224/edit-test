@@ -12,6 +12,7 @@ import com.example.server.repository.TestRepository;
 import com.example.server.repository.VariantRepository;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -28,72 +29,79 @@ public class DataLoader implements CommandLineRunner {
     private final TestRepository testRepository;
     private final AnswerRepository answerRepository;
 
+    @Value("${spring.sql.init.mode}")
+    private String initMode;
+
     @Override
     public void run(String... args) throws Exception {
-        Gson gson = new Gson();
 
-        Response response = gson.fromJson(new FileReader("C:\\Muhammad\\Projects\\edit-test\\server\\src\\main\\resources\\variant-ru.json"), Response.class);
+        if (initMode.equals("always")) {
+            Gson gson = new Gson();
 
-        for (ResponseItem item : response.getItems()) {
-            Variant variant = variantRepository.save(new Variant(item.getId(), "RU"));
-            for (TestsItem testItem : item.getTests()) {
-                Test test = testRepository.save(new Test(
-                        testItem.getText(),
-                        testItem.getType(),
-                        testItem.getTypeimage(),
-                        testItem.getId(),
-                        variant));
-                for (AnswersItem answersItem : testItem.getAnswers()) {
-                    answerRepository.save(new Answer(
-                            answersItem.getText(),
-                            answersItem.getId(),
-                            answersItem.isTrue(),
-                            test
-                    ));
+            Response response = gson.fromJson(new FileReader("C:\\Muhammad\\Projects\\edit-test\\server\\src\\main\\resources\\variant-ru.json"), Response.class);
+
+            for (ResponseItem item : response.getItems()) {
+                Variant variant = variantRepository.save(new Variant(item.getId(), "RU"));
+                for (TestsItem testItem : item.getTests()) {
+                    Test test = testRepository.save(new Test(
+                            testItem.getText(),
+                            testItem.getType(),
+                            testItem.getTypeimage(),
+                            testItem.getId(),
+                            variant));
+                    for (AnswersItem answersItem : testItem.getAnswers()) {
+                        answerRepository.save(new Answer(
+                                answersItem.getText(),
+                                answersItem.getId(),
+                                answersItem.isTrue(),
+                                test
+                        ));
+                    }
                 }
             }
-        }
-        response = gson.fromJson(new FileReader("C:\\Muhammad\\Projects\\edit-test\\server\\src\\main\\resources\\variant-oz.json"), Response.class);
+            response = gson.fromJson(new FileReader("C:\\Muhammad\\Projects\\edit-test\\server\\src\\main\\resources\\variant-oz.json"), Response.class);
 
-        for (ResponseItem item : response.getItems()) {
-            Variant variant = variantRepository.save(new Variant(item.getId(), "OZ"));
-            for (TestsItem testItem : item.getTests()) {
-                Test test = testRepository.save(new Test(
-                        testItem.getText(),
-                        testItem.getType(),
-                        testItem.getTypeimage(),
-                        testItem.getId(),
-                        variant));
-                for (AnswersItem answersItem : testItem.getAnswers()) {
-                    answerRepository.save(new Answer(
-                            answersItem.getText(),
-                            answersItem.getId(),
-                            answersItem.isTrue(),
-                            test
-                    ));
+            for (ResponseItem item : response.getItems()) {
+                Variant variant = variantRepository.save(new Variant(item.getId(), "OZ"));
+                for (TestsItem testItem : item.getTests()) {
+                    Test test = testRepository.save(new Test(
+                            testItem.getText(),
+                            testItem.getType(),
+                            testItem.getTypeimage(),
+                            testItem.getId(),
+                            variant));
+                    for (AnswersItem answersItem : testItem.getAnswers()) {
+                        answerRepository.save(new Answer(
+                                answersItem.getText(),
+                                answersItem.getId(),
+                                answersItem.isTrue(),
+                                test
+                        ));
+                    }
                 }
             }
-        }
-        response = gson.fromJson(new FileReader("C:\\Muhammad\\Projects\\edit-test\\server\\src\\main\\resources\\variant-uz.json"), Response.class);
+            response = gson.fromJson(new FileReader("C:\\Muhammad\\Projects\\edit-test\\server\\src\\main\\resources\\variant-uz.json"), Response.class);
 
-        for (ResponseItem item : response.getItems()) {
-            Variant variant = variantRepository.save(new Variant(item.getId(), "UZ"));
-            for (TestsItem testItem : item.getTests()) {
-                Test test = testRepository.save(new Test(
-                        testItem.getText(),
-                        testItem.getType(),
-                        testItem.getTypeimage(),
-                        testItem.getId(),
-                        variant));
-                for (AnswersItem answersItem : testItem.getAnswers()) {
-                    answerRepository.save(new Answer(
-                            answersItem.getText(),
-                            answersItem.getId(),
-                            answersItem.isTrue(),
-                            test
-                    ));
+            for (ResponseItem item : response.getItems()) {
+                Variant variant = variantRepository.save(new Variant(item.getId(), "UZ"));
+                for (TestsItem testItem : item.getTests()) {
+                    Test test = testRepository.save(new Test(
+                            testItem.getText(),
+                            testItem.getType(),
+                            testItem.getTypeimage(),
+                            testItem.getId(),
+                            variant));
+                    for (AnswersItem answersItem : testItem.getAnswers()) {
+                        answerRepository.save(new Answer(
+                                answersItem.getText(),
+                                answersItem.getId(),
+                                answersItem.isTrue(),
+                                test
+                        ));
+                    }
                 }
             }
         }
     }
+
 }
