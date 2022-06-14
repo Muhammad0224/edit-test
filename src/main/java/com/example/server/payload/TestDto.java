@@ -16,5 +16,6 @@ public class TestDto {
     private String text;
     private Integer testNumber;
     private Variant variant;
+    private String description;
     private List<Answer> answers;
 }
