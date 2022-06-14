@@ -1,8 +1,14 @@
+
+
 spring:
   datasource:
     username: gsnfscqaujkuak
     password: 777e6b4637e0cc9190086e45b0f1bb1a80bd81777d6b183a7ea73f9f2f5b2312
     url: jdbc:postgresql://ec2-54-156-110-139.compute-1.amazonaws.com:5432/dfkln5bfbjv67v
+#    username: postgres
+#    password: root123
+#    url: jdbc:postgresql://localhost:5432/auto_test
+#    url: jdbc:postgresql://localhost:5432/autotest_ready
   jpa:
     hibernate:
       ddl-auto: update
@@ -10,3 +16,7 @@ spring:
   sql:
     init:
       mode: never
+#  data:
+#    cassandra:
+#server:
+#  port: 8081

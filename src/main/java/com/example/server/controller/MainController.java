@@ -60,6 +60,7 @@ public class MainController {
             return null;
         Test test = optionalTest.get();
         test.setText(dto.getText());
+        test.setDescription(dto.getDescription());
 
         for (Answer dtoAnswer : dto.getAnswers()) {
             Optional<Answer> optionalAnswer = answerRepository.findById(dtoAnswer.getId());

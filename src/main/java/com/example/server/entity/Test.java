@@ -29,6 +29,8 @@ public class Test {
     @ManyToOne
     private Variant variant;
 
+    private String description;
+
     public Test(String text, Integer type, Integer typeImage, Integer testNumber, Variant variant) {
         this.text = text;
         this.type = type;

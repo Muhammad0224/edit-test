@@ -18,5 +18,7 @@ public class UpdateTestDto {
 
     private String text;
 
+    private String description;
+
     private List<Answer> answers;
 }
