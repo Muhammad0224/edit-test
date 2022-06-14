@@ -40,7 +40,7 @@ public class MainController {
 
         for (Test test : tests) {
             res.add(new TestDto(test.getId(), test.getText(), test.getTestNumber(), test.getVariant(),
-                    answerRepository.findAllByTestIdOrderByAnswerNumber(test.getId())));
+                    test.getDescription(), answerRepository.findAllByTestIdOrderByAnswerNumber(test.getId())));
         }
         return res;
     }
