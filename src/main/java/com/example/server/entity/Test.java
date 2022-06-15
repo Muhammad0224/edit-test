@@ -1,5 +1,6 @@
 package com.example.server.entity;
 
+import com.example.server.entity.base.Main;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Test {
+public class Test extends Main {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
