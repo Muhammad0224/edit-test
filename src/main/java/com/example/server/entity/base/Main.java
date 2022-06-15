@@ -23,6 +23,6 @@ public abstract class Main {
     @JsonIgnore
     @JsonIgnoreProperties
     @UpdateTimestamp
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 }
